@@ -1,7 +1,8 @@
 import * as React from "react";
 
 export interface ICellProps {
-
+    value: any;
+    width?: number;
 }
 
 export class Cell extends React.Component<ICellProps, void> {
@@ -10,9 +11,13 @@ export class Cell extends React.Component<ICellProps, void> {
     };
 
     render() {
+        const style = {
+            width: this.props.width + "px"
+        };
+
         return (
-            <div className="react-grid-row-cell">
-                Cell
+            <div style={style} className="react-grid-row-cell">
+                {this.props.value}
             </div>
         );
     }

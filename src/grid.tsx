@@ -4,19 +4,51 @@ import { Header } from "./header";
 import { Body } from "./body";
 
 export interface IGridProps {
-
+    adapter: IAdapter;
 }
 
 export interface IGridState {
-
+    columns: IColumn[];
+    rows: IRow[];
 }
 
 export class Grid extends React.Component<IGridProps, IGridState> {
+    constructor(props) {
+        super(props);
+        this.state = {
+            columns: [],
+            rows: []
+        };
+    }
+
+    componentDidMount() {
+        this.fetchColumns();
+        this.fetchRows();
+    }
+
+    fetchColumns() {
+        this.props.adapter.fetchColumns().then(columns => {
+            this.setState((prevState, props) => {
+                prevState.columns = columns;
+                return prevState;
+            });
+        });
+    }
+
+    fetchRows() {
+        this.props.adapter.fetchRows().then(rows => {
+            this.setState((prevState, props) => {
+                prevState.rows = rows;
+                return prevState;
+            });
+        });
+    }
+
     render() {
         return (
             <div className="react-grid">
-                <Header />
-                <Body />
+                <Header columns={this.state.columns} />
+                <Body columns={this.state.columns} rows={this.state.rows} />
             </div>
         );
     }
