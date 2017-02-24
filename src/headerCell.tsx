@@ -1,8 +1,15 @@
 import * as React from "react";
 
+export enum SortState {
+    Enabled,
+    Ascending,
+    Descending
+}
+
 export interface IHeaderCellProps {
     title: string;
     width?: number;
+    sortState: SortState;
     onClick: () => void;
 }
 
@@ -22,7 +29,25 @@ export class HeaderCell extends React.Component<IHeaderCellProps, void> {
                 style={style}
                 className="react-grid-header-cell">
                 {this.props.title}
+                <SortingIcon sortState={this.props.sortState} />
             </div>
         );
+    }
+}
+
+interface ISortingProps {
+    sortState: SortState;
+}
+
+class SortingIcon extends React.Component<ISortingProps, void> {
+    render() {
+        switch (this.props.sortState) {
+            case SortState.Ascending:
+                return <div className="icon-sort-up"></div>;
+            case SortState.Descending:
+                return <div className="icon-sort-down"></div>;
+            default:
+                return <div className="icon-sort"></div>;
+        }
     }
 }

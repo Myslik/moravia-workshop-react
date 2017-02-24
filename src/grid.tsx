@@ -83,7 +83,7 @@ export class Grid extends React.Component<IGridProps, IGridState> {
 
         return (
             <div style={style} className="react-grid">
-                <Header columns={this.state.columns} onSort={this.handleSort} />
+                <Header columns={this.state.columns} sorting={this.state.sorting} onSort={this.handleSort} />
                 <Body columns={this.state.columns} rows={this.state.rows} />
             </div>
         );
