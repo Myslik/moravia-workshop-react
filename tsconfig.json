@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "outDir": "./",
+    "sourceMap": true,
+    "module": "commonjs",
+    "target": "es5",
+    "jsx": "react",
+    "noLib": false,
+    "types": ["react", "react-dom", "es6-promise", "jest", "react-addons-test-utils"]
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
